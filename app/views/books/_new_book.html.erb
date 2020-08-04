@@ -1,0 +1,23 @@
+
+
+    <%= form_for(book, url: books_path) do |f| %>
+
+      <% if book.errors.any? %>
+        <div class="alert alert-warning">
+         <h5><%= book.errors.count %>errors prohibited this book from being saved:</h5>
+            <ul>
+              <% book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+
+      <h5>Title</h5>
+        <%= f.text_field :title,class: "col-xs-12" %>
+
+      <h5>Opinion</h5>
+        <%= f.text_area :body,class: "col-xs-12" %>
+        <br>
+        <%= f.submit 'Create Book',class: "col-xs-12 btn btn-primary" %>
+      <% end %>

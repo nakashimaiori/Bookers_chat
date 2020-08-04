@@ -2,42 +2,20 @@
 <div class="container">
 <div class="row">
   <div class= "col-xs-3">
-    <h2>User info</h2>
+<h2>User info</h2>
 
-
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-
-
-      <table class="table table-hover">
-        <tr>
-          <td><h5>name</h5></td>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <td><h5>introduction</h5></td>
-          <td><%= @user.introduction %></td>
-        </tr>
-      </table>
-
-          <p><%= link_to "", edit_user_path(@user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %></p>
-
+  <%= render 'info', user: @user %>
 
 <div class="newbook">
   <h2>New book</h2>
-    <%= form_for(@book, url: books_path) do |f| %>
-      <h5>Title</h5>
-      <%= f.text_field :title,class: "col-xs-12" %>
-
-      <h5>Opinion</h5>
-      <%= f.text_area :body,class: "col-xs-12" %>
-      <%= f.submit 'Create Book',class: "col-xs-12 btn btn-primary" %>
-    <% end %>
-  </div>
+    <%= render 'books/new_book', book: @book %>
+</div>
 
   </div>
 
 
   <div class= "col-xs-9">
+    <h1>Users</h1>
   	<table class='table table-hover' >
       <thead>
   		<tr>
