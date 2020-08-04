@@ -8,20 +8,22 @@ RSpec.describe 'Bookモデルのテスト', type: :model do
     context 'titleカラム' do
       it '空欄でないこと' do
         book.title = ''
-        expect(book.valid?).to eq false;
+        expect(book.valid?).to eq false
       end
     end
+
     context 'bodyカラム' do
       it '空欄でないこと' do
         book.body = ''
-        expect(book.valid?).to eq false;
+        expect(book.valid?).to eq false
       end
       it '200文字以下であること' do
-        book.body = Faker::Lorem.characters(number:201)
-        expect(book.valid?).to eq false;
+        book.body = Faker::Lorem.characters(number: 201)
+        expect(book.valid?).to eq false
       end
     end
   end
+
   describe 'アソシエーションのテスト' do
     context 'Userモデルとの関係' do
       it 'N:1となっている' do

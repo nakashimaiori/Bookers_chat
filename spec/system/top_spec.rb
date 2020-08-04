@@ -2,9 +2,11 @@ require 'rails_helper'
 
 describe 'トップページのテスト' do
   let(:user) { create(:user) }
+
   before do
     visit root_path
   end
+
   describe 'ボディ部分のテスト' do
     context '表示の確認' do
       it 'Log inリンクが表示される' do
@@ -27,6 +29,7 @@ describe 'トップページのテスト' do
         click_button 'Log in'
         visit root_path
       end
+
       it 'Log inリンクをクリックしたらユーザー詳細画面へ遷移する' do
         login_link = find_all('a')[4].native.inner_text
         click_link login_link

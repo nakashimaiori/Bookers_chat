@@ -5,6 +5,7 @@ describe 'ユーザー認証のテスト' do
     before do
       visit new_user_registration_path
     end
+
     context '新規登録画面に遷移' do
       it '新規登録に成功する' do
         fill_in 'user[name]', with: Faker::Internet.username(specifier: 5)
@@ -26,13 +27,17 @@ describe 'ユーザー認証のテスト' do
       end
     end
   end
+
   describe 'ユーザーログイン' do
     let(:user) { create(:user) }
+
     before do
       visit new_user_session_path
     end
+
     context 'ログイン画面に遷移' do
       let(:test_user) { user }
+
       it 'ログインに成功する' do
         fill_in 'user[name]', with: test_user.name
         fill_in 'user[password]', with: test_user.password
@@ -56,12 +61,14 @@ describe 'ユーザーのテスト' do
   let(:user) { create(:user) }
   let!(:test_user2) { create(:user) }
   let!(:book) { create(:book, user: user) }
+
   before do
     visit new_user_session_path
     fill_in 'user[name]', with: user.name
     fill_in 'user[password]', with: user.password
     click_button 'Log in'
   end
+
   describe 'サイドバーのテスト' do
     context '表示の確認' do
       it 'User infoと表示される' do
@@ -90,6 +97,7 @@ describe 'ユーザーのテスト' do
         expect(current_path).to eq('/users/' + user.id.to_s + '/edit')
       end
     end
+
     context '他人の編集画面への遷移' do
       it '遷移できない' do
         visit edit_user_path(test_user2)
@@ -101,6 +109,7 @@ describe 'ユーザーのテスト' do
       before do
         visit edit_user_path(user)
       end
+
       it 'User infoと表示される' do
         expect(page).to have_content('User info')
       end
@@ -122,7 +131,7 @@ describe 'ユーザーのテスト' do
         fill_in 'user[name]', with: ''
         click_button 'Update User'
         expect(page).to have_content 'error'
-				#もう少し詳細にエラー文出したい
+        # もう少し詳細にエラー文出したい
         expect(current_path).to eq('/users/' + user.id.to_s)
       end
     end
@@ -132,6 +141,7 @@ describe 'ユーザーのテスト' do
     before do
       visit users_path
     end
+
     context '表示の確認' do
       it 'Usersと表示される' do
         expect(page).to have_content('Users')
@@ -149,10 +159,12 @@ describe 'ユーザーのテスト' do
       end
     end
   end
+
   describe '詳細画面のテスト' do
     before do
       visit user_path(user)
     end
+
     context '表示の確認' do
       it 'Booksと表示される' do
         expect(page).to have_content('Books')
