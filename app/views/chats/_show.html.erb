@@ -1,0 +1,10 @@
+<% if messages.present? %>
+ <% messages.each do |m| %>
+ <div class="chat-box">
+   <div class="chat-face">
+   </div>
+   <div class="chat-hukidashi"><%= m.user.name %>：<strong><%= m.message %></strong> <br>
+   </div>
+ </div>
+ <% end %>
+ <% end %>
